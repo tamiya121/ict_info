@@ -9,28 +9,37 @@
 			<thead>
 				<tr>
 					<th>번호</th>
+					<th>아이디</th>
+					<th>이름 </th>
 					<th>부서코드</th>
 					<th>부서명</th>
-					<th>부서설명</th>
+					<th>권한레벨</th>
+					<th>권한명</th>
+					<th>이메일</th>
+					<th>전화번호</th>
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${diList}" var="di">
+			<c:if test="${empty miList}">
 				<tr>
-					<td>${di.diNum}</td>
-					<td><a href="/depart/departView?diNum=${di.diNum}">${di.diCode}</a></td>
-					<td>${di.diName}</td>
-					<td>${di.diDesc}</td>
+					<td colspan="7">등록된 사원이 없습니다.</td>
+				</tr>
+			</c:if>
+			<c:forEach items="${miList}" var="mi">
+				<tr>
+					<td>${mi.miNum}</td>
+					<td>${mi.miId}</td>
+					<td>${mi.miName}</td>
+					<td>${mi.diCode}</td>
+					<td>${mi.diName}</td>
+					<td>${mi.liLevel}</td>
+					<td>${mi.liName}</td>
+					<td>${mi.miEmail}</td>
+					<td>${mi.miPhone}</td>
 				</tr>
 			</c:forEach>
 			</tbody>
 		</table>
-		<div class="btns">
-			<button data-page="/views/depart/departInsert">부서등록</button>
-		</div>
-		<div class="page" style="text-align:center">
-			<jsp:include page="/WEB-INF/views/menu/pagination.jsp"></jsp:include>
-		</div>
 	</div>
 </div>
 <jsp:include page="/WEB-INF/views/menu/bottom.jsp" />

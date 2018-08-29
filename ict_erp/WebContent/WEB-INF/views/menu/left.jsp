@@ -31,5 +31,14 @@ String rPath = request.getContextPath();
             </ul>
         </div>
 <script>
-
+function getHtml(url){
+	$.ajax(
+	{
+		url:url,
+		success:function(html){
+			$('#page-content-wrapper').html(html);
+		}
+	}		
+);
+}
 </script>

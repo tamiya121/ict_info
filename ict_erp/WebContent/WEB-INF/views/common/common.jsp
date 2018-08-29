@@ -18,6 +18,7 @@ String uri = request.getRequestURI();
 	<script src="<%=rPath%>/vendor/jquery/jquery.min.js"></script>
     <script src="<%=rPath%>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="<%=rPath%>/vendor/common.js"></script>
+</head>
 
 <script>
 	window.onload = function(){
@@ -30,6 +31,3 @@ String uri = request.getRequestURI();
 		}
 	}
 </script>
-
-</head>
-

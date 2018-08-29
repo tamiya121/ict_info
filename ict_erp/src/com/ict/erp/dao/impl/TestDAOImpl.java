@@ -26,7 +26,7 @@ public class TestDAOImpl implements TestDAO {
 				}else if(ti.getTiName()!=null) {
 					sql += " where tiName like '%' || ? || '%'";
 				}else if(ti.getTiText()!=null) {
-					sql += " where tiText like '%' || ? || '%'";
+					sql += " where tiText like '%' || ? || '%'";    //   ? *        * ? ;
 				}
 			}
 			PreparedStatement ps = con.prepareStatement(sql);
