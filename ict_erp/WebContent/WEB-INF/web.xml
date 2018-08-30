@@ -44,6 +44,14 @@
     <servlet-name>MenuServlet</servlet-name>
     <url-pattern>/menu/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Menu2Servlet</servlet-name>
+    <servlet-class>com.ict.erp.controller.MenuServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Menu2Servlet</servlet-name>
+    <url-pattern>/menu2/*</url-pattern>
+  </servlet-mapping>
   <error-page>
     <error-code>404</error-code>
     <location>/WEB-INF/views/error/404.jsp</location>
@@ -52,4 +60,24 @@
     <error-code>500</error-code>
     <location>/WEB-INF/views/error/500.jsp</location>
   </error-page>
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>com.ict.erp.filter.AuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>

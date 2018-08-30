@@ -30,7 +30,8 @@ public class MenuServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		try {
 			if (cmd.equals("menuList")) {
-				pw.println(ms.selectMenuList(null));
+				request.setAttribute("mList", ms.selectMenuList(null));
+
 			} else if (cmd.equals("menuView")) {
 				String meiNumStr = request.getParameter("meiNum");
 				if (meiNumStr == null || meiNumStr.equals("")) {
@@ -38,12 +39,14 @@ public class MenuServlet extends HttpServlet {
 				}
 				MenuInfo menu = new MenuInfo();
 				menu.setMeiNum(Long.parseLong(meiNumStr));
-				pw.println(ms.selectMenu(menu));
+				request.setAttribute("ms", ms.selectMenu(menu));
 			}
 		} catch (SQLException e) {
 			pw.print("에러 났어!!");
 			pw.print("에러 이유는 : " + e);
 		}
+		doService(request, response);
+		
 
 	}
 
@@ -60,7 +63,7 @@ public class MenuServlet extends HttpServlet {
 				String meiPrice = request.getParameter("meiPrice");
 				String meiDesc = request.getParameter("meiDesc");
 				MenuInfo menu = new MenuInfo(null, meiName, Long.parseLong(meiPrice), meiDesc);
-				pw.println(ms.insertMenu(menu));
+				request.setAttribute("ms", ms.insertMenu(menu));
 
 			} else if (cmd.equals("menuUpdate")) {
 				String meiNum = request.getParameter("meiNum");
@@ -68,22 +71,26 @@ public class MenuServlet extends HttpServlet {
 				String meiPrice = request.getParameter("meiPrice");
 				String meiDesc = request.getParameter("meiDesc");
 				MenuInfo menu = new MenuInfo(Long.parseLong(meiNum), meiName, Long.parseLong(meiPrice), meiDesc);
-				pw.println(ms.updateMenu(menu));
+				request.setAttribute("ms", ms.updateMenu(menu));
 
 			} else if (cmd.equals("menuDelete")) {
+				System.out.println("대나");
 				String meiNum = request.getParameter("meiNum");
 				MenuInfo menu = new MenuInfo(Long.parseLong(meiNum), null, null, null);
-				pw.println(ms.deleteMenu(menu));
+				request.setAttribute("ms", ms.deleteMenu(menu));
 			}
 		} catch (SQLException e) {
 			pw.print("에러 났어!!");
 			pw.print("에러 이유는 : " + e);
 		}
-		request.setAttribute("miList", ms);
-		uri ="/views" + request.getRequestURI();
+		doService(request,response);
+	}
+
+	private void doService(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		uri = "/views" + request.getRequestURI();
 		RequestDispatcher rd = request.getRequestDispatcher(uri);
 		rd.forward(request, response);
-		
-		
+
 	}
 }

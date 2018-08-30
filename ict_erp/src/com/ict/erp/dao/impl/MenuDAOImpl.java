@@ -52,6 +52,7 @@ public class MenuDAOImpl extends CommonDAOImpl implements MenuDAO {
 	public MenuInfo selectMenu(MenuInfo menu) throws SQLException {
 		String sql = "select * from menu_info where meiNum=?";
 		
+		
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setLong(1, menu.getMeiNum());

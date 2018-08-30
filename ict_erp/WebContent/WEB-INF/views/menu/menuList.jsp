@@ -17,10 +17,10 @@
 				</thead>
 				<tbody id="menuTbody">
 				<tr>
-					<td>${meiNum}</td>
-					<td>${meiName}</td>
-					<td>${meiPrice}</td>
-					<td>${meiDesc}</td>
+					<td>${ms.meiNum}</td>
+					<td>${ms.meiName}</td>
+					<td>${ms.meiPrice}</td>
+					<td>${ms.meiDesc}</td>
 				</tr>
 			
 			</tbody>
